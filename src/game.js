@@ -89,14 +89,40 @@ class Game {
     this.matrix[spot[0]][spot[1]] = (Math.random() >= 0.5) ? 2 : 4;
   }
 
+  pushRowToRight(row) {
+    // Remove all zero from the array and create a new array
+    row = row.filter(x => x !== 0);
+
+    for (let i = row.length; i >= 1; i--) {
+      if (row[i] === row[i - 1]) {
+        row[i] = row[i] + row[i - 1];
+        row[i - 1] = 0;
+        break;
+      }
+    }
+
+    // Get the missing count from the array
+    let missingItemsCount = this.rowLength - row.length;
+    // Create a new array of 0's
+    let zeroArray = Array.from(Array(missingItemsCount), () => 0);
+    // Merge the zero array and new array something line ( zeroArray + newArray)
+    let pushedArray = zeroArray.concat(row);
+    
+    return pushedArray;
+  }
+
   run() {
-    this.matrix = this.generateInitialMatrix();
-    const availableSpots = this.findAvailableSpots(this.matrix);
-    const spot1 = this.getRandomSpot(availableSpots);
-    const spot2 = this.getRandomSpot(availableSpots);
-    this.insertRandomNumberToMatrixForSpot(spot1);
-    this.insertRandomNumberToMatrixForSpot(spot2);
-    console.table(this.matrix);
+    // this.matrix = this.generateInitialMatrix();
+    // const availableSpots = this.findAvailableSpots(this.matrix);
+    // const spot1 = this.getRandomSpot(availableSpots);
+    // const spot2 = this.getRandomSpot(availableSpots);
+    // this.insertRandomNumberToMatrixForSpot(spot1);
+    // this.insertRandomNumberToMatrixForSpot(spot2);
+    // console.table(this.matrix);
+    const a = this.pushRowToRight([2, 2, 0, 4]);
+    console.log(a);
+    const b = this.pushRowToRight(a);
+    console.log(b);
   }
   
 }
