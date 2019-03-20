@@ -61,18 +61,30 @@ class Game {
     let availableSpots = [];
     for (let i = 0; i < this.rowLength; i++) {
       for (let j = 0; j < this.colLength; j++) {
+        // Check if the spot has -1. Thats considered as empty
         if (matrix[i][j] === -1) {
-          availableSpots.push([{x: i, y: j}]);
+          // Save that coordinate in an array
+          availableSpots.push([i, j]);
         }
       }
     }
     return availableSpots;
   }
 
+  // Only partial unit test available
+  // Select a random spot from availableSpot
+  getRandomSpot(availableSpots) {
+    // Get a random spot from the array
+    let randomSpot = Math.floor((Math.random() * availableSpots.length));
+    // Pick that item from the list and return
+    return availableSpots[randomSpot];
+  }
+
   run() {
     this.matrix = this.generateInitialMatrix();
     const availableSpots = this.findAvailableSpots(this.matrix);
-    console.table(availableSpots)
+    const spot = this.getRandomSpot(availableSpots);
+    console.log(spot)
   }
   
 }
