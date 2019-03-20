@@ -156,6 +156,43 @@ class Game {
     return matrix;
   }
 
+  // Slide the whole matrix up, just equivalent to swipe up in the game
+  slideUp(matrix) {
+    for (let i = 0; i < this.rowLength; i++) {
+      let rowArrayItems = [];
+      for (let j = 0; j < this.colLength; j++) {
+        // reverse i j to achieve slideUp
+        rowArrayItems.push(matrix[j][i]);
+      }
+      rowArrayItems = this.pushRowToLeft(rowArrayItems);
+
+      for (let j = 0; j < this.colLength; j++) {
+        // reverse i j to achieve slideUp
+        matrix[j][i] = rowArrayItems[j];
+      }
+    }
+    return matrix;
+  }
+
+  // Slide the whole matrix up, just equivalent to swipe up in the game
+  slideDown(matrix) {
+    for (let i = 0; i < this.rowLength; i++) {
+      let rowArrayItems = [];
+      for (let j = 0; j < this.colLength; j++) {
+        // reverse i j to achieve slideUp
+        rowArrayItems.push(matrix[j][i]);
+      }
+      // Same as left logic, just reversing the array
+      rowArrayItems = this.pushRowToLeft(rowArrayItems.reverse()).reverse();
+
+      for (let j = 0; j < this.colLength; j++) {
+        // reverse i j to achieve slideUp
+        matrix[j][i] = rowArrayItems[j];
+      }
+    }
+    return matrix;
+  }
+
   run() {
     // this.matrix = this.generateInitialMatrix();
     // const availableSpots = this.findAvailableSpots(this.matrix);
@@ -165,11 +202,11 @@ class Game {
     // this.insertRandomNumberToMatrixForSpot(spot2);
     // console.table(this.matrix);
     // const a = this.pushRowToLeft([0, 0, 4, 2]);
-    const matrix = [[0, 0, 4, 0],
-                    [0, 0, 0, 0],
-                    [8, 8, 0, 0],
-                    [0, 0, 0, 0]];
-    this.slideRight(matrix);
+    const matrix = [[2, 4, 0, 2],
+                    [4, 4, 0, 2],
+                    [2, 0, 8, 2],
+                    [4, 0, 0, 2]];
+    this.slideDown(matrix);
     console.table(matrix);
   }
   
