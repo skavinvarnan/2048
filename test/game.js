@@ -344,5 +344,83 @@ describe('Game tests', function () {
     expect(outputMatrix).to.eql(outputMatrixExpected);
   });
 
+  it('slideUp test 1', () => {
+    const matrix = [[2, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 8, 2, 4],
+                    [0, 0, 8, 2]];
+    const outputMatrix = new Game().slideUp(matrix);
+    const outputMatrixExpected = [[2, 8, 2, 4],
+                                  [0, 0, 8, 2],
+                                  [0, 0, 0, 0],
+                                  [0, 0, 0, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideUp test 2', () => {
+    const matrix = [[0, 0, 2, 0],
+                    [2, 4, 0, 0],
+                    [2, 0, 0, 0],
+                    [4, 4, 0, 0]];
+    const outputMatrix = new Game().slideUp(matrix);
+    const outputMatrixExpected = [[4, 8, 2, 0],
+                                  [4, 0, 0, 0],
+                                  [0, 0, 0, 0],
+                                  [0, 0, 0, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideUp test 3', () => {
+    const matrix = [[0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [8, 0, 0, 2],
+                    [2, 8, 2, 0]];
+    const outputMatrix = new Game().slideUp(matrix);
+    const outputMatrixExpected = [[8, 8, 2, 2],
+                                  [2, 0, 0, 0],
+                                  [0, 0, 0, 0],
+                                  [0, 0, 0, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideDown test 1', () => {
+    const matrix = [[8, 8, 2, 2],
+                    [2, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 2]];
+    const outputMatrix = new Game().slideDown(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 0],
+                                  [0, 0, 0, 0],
+                                  [8, 0, 0, 0],
+                                  [2, 8, 2, 4]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideDown test 2', () => {
+    const matrix = [[8, 8, 2, 2],
+                    [2, 0, 0, 4],
+                    [0, 0, 0, 0],
+                    [2, 0, 0, 0]];
+    const outputMatrix = new Game().slideDown(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 0],
+                                  [0, 0, 0, 0],
+                                  [8, 0, 0, 2],
+                                  [4, 8, 2, 4]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideDown test 3', () => {
+    const matrix = [[2, 8, 2, 2],
+                    [8, 2, 0, 4],
+                    [4, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    const outputMatrix = new Game().slideDown(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 0],
+                                  [2, 0, 0, 0],
+                                  [8, 8, 0, 2],
+                                  [4, 2, 2, 4]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
 
 });
