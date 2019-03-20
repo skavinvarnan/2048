@@ -9,7 +9,7 @@ const Game = require("../src/game");
 const { expect } = require('chai');
 
 
-describe('Game test', function () {
+describe('Game tests', function () {
   it('generateInitialMatrix', () => {
     const initialMatrix = new Game().generateInitialMatrix();
     expect(initialMatrix).to.eql([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
@@ -192,5 +192,66 @@ describe('Game test', function () {
     const spot = new Game().getRandomSpot(availableSpots);
     expect(spot).to.eql([2, 3]);
   });
+
+  it('pushRowToLeft [4, 4, 2, 2] -> [8, 4, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([4, 4, 2, 2]);
+    expect(spot).to.eql([8, 4, 0, 0]);
+  });
+
+  it('pushRowToLeft [4, 0, 2, 2] -> [4, 4, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([4, 0, 2, 2]);
+    expect(spot).to.eql([4, 4, 0, 0]);
+  });
+
+  it('pushRowToLeft [0, 2, 2, 0] -> [4, 0, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([0, 2, 2, 0]);
+    expect(spot).to.eql([4, 0, 0, 0]);
+  });
+
+  it('pushRowToLeft [2, 2, 4, 8] -> [4, 4, 8, 0]', () => {
+    const spot = new Game().pushRowToLeft([2, 2, 4, 8]);
+    expect(spot).to.eql([4, 4, 8, 0]);
+  });
+
+  it('pushRowToLeft [2, 0, 2, 0] -> [4, 0, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([2, 0, 2, 0]);
+    expect(spot).to.eql([4, 0, 0, 0]);
+  });
+
+  it('pushRowToLeft [0, 2, 4, 4] -> [2, 8, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([0, 2, 4, 4]);
+    expect(spot).to.eql([2, 8, 0, 0]);
+  });
+
+  it('pushRowToLeft [8, 2, 2, 8] -> [8, 4, 8, 0]', () => {
+    const spot = new Game().pushRowToLeft([8, 2, 2, 8]);
+    expect(spot).to.eql([8, 4, 8, 0]);
+  });
+
+  it('pushRowToLeft [0, 0, 2, 2] -> [4, 0, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([0, 0, 2, 2]);
+    expect(spot).to.eql([4, 0, 0, 0]);
+  });
+
+  it('pushRowToLeft [0, 8, 2, 4] -> [8, 2, 4, 0]', () => {
+    const spot = new Game().pushRowToLeft([0, 8, 2, 4]);
+    expect(spot).to.eql([8, 2, 4, 0]);
+  });
+
+  it('pushRowToLeft [2, 2, 4, 0] -> [4, 4, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([2, 2, 4, 0]);
+    expect(spot).to.eql([4, 4, 0, 0]);
+  });
+
+  it('pushRowToLeft [2, 2, 4, 4] -> [4, 8, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([2, 2, 4, 4]);
+    expect(spot).to.eql([4, 8, 0, 0]);
+  });
+
+  it('pushRowToLeft [0, 0, 2, 0] -> [2, 0, 0, 0]', () => {
+    const spot = new Game().pushRowToLeft([0, 0, 2, 0]);
+    expect(spot).to.eql([2, 0, 0, 0]);
+  });
+
 
 });

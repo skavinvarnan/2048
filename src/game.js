@@ -89,26 +89,30 @@ class Game {
     this.matrix[spot[0]][spot[1]] = (Math.random() >= 0.5) ? 2 : 4;
   }
 
-  pushRowToRight(row) {
-    // Remove all zero from the array and create a new array
-    row = row.filter(x => x !== 0);
-
-    for (let i = row.length; i >= 1; i--) {
-      if (row[i] === row[i - 1]) {
-        row[i] = row[i] + row[i - 1];
-        row[i - 1] = 0;
-        break;
+  pushRowToLeft(row) {
+    let nextNonZeroIndex;
+    for (let i = 0; i < row.length; i++) {
+      // Get the index of first non zero number which is not is 0th index
+      nextNonZeroIndex = row.findIndex((currentValue, index) => {
+        return index > i && currentValue !== 0;
+      });
+      // Safe check since if no value present findIndex will give -1
+      if (nextNonZeroIndex !== -1) {
+        // If current index location is 0 swap 0 with non zero item index
+        if (row[i] === 0) {
+          row[i] = row[nextNonZeroIndex];
+          row[nextNonZeroIndex] = 0;
+          // decrement i because if the same number is present else where is the next element of the array
+          // that particular number should be added to this number
+          i = i - 1;
+        } else if (row[i] === row[nextNonZeroIndex]) {
+          // If the next value is the same as non zero item, multiply current item and make non zero item index 0
+          row[i] = row[i] * 2;
+          row[nextNonZeroIndex] = 0;
+        }
       }
     }
-
-    // Get the missing count from the array
-    let missingItemsCount = this.rowLength - row.length;
-    // Create a new array of 0's
-    let zeroArray = Array.from(Array(missingItemsCount), () => 0);
-    // Merge the zero array and new array something line ( zeroArray + newArray)
-    let pushedArray = zeroArray.concat(row);
-    
-    return pushedArray;
+    return row;
   }
 
   run() {
@@ -119,10 +123,8 @@ class Game {
     // this.insertRandomNumberToMatrixForSpot(spot1);
     // this.insertRandomNumberToMatrixForSpot(spot2);
     // console.table(this.matrix);
-    const a = this.pushRowToRight([2, 2, 0, 4]);
+    const a = this.pushRowToLeft([0, 0, 4, 2]);
     console.log(a);
-    const b = this.pushRowToRight(a);
-    console.log(b);
   }
   
 }
