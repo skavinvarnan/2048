@@ -139,6 +139,23 @@ class Game {
     return matrix;
   }
 
+  // Slide the whole matrix right, just equivalent to swipe right in the game
+  slideRight(matrix) {
+    for (let i = 0; i < this.rowLength; i++) {
+      let rowArrayItems = [];
+      for (let j = 0; j < this.colLength; j++) {
+        rowArrayItems.push(matrix[i][j]);
+      }
+      // Same as left logic, just reversing the array
+      rowArrayItems = this.pushRowToLeft(rowArrayItems.reverse()).reverse();
+
+      for (let j = 0; j < this.colLength; j++) {
+        matrix[i][j] = rowArrayItems[j];
+      }
+    }
+    return matrix;
+  }
+
   run() {
     // this.matrix = this.generateInitialMatrix();
     // const availableSpots = this.findAvailableSpots(this.matrix);
@@ -148,11 +165,11 @@ class Game {
     // this.insertRandomNumberToMatrixForSpot(spot2);
     // console.table(this.matrix);
     // const a = this.pushRowToLeft([0, 0, 4, 2]);
-    const matrix = [[0, 0, 0, 0],
+    const matrix = [[0, 0, 4, 0],
                     [0, 0, 0, 0],
-                    [0, 0, 0, 0],
+                    [8, 8, 0, 0],
                     [0, 0, 0, 0]];
-    this.slideLeft(matrix);
+    this.slideRight(matrix);
     console.table(matrix);
   }
   

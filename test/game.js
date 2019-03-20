@@ -305,5 +305,44 @@ describe('Game tests', function () {
     expect(outputMatrix).to.eql(outputMatrixExpected);
   });
 
+  it('slideRight test 1', () => {
+    const matrix = [[0, 4, 0, 0],
+                    [0, 8, 4, 0],
+                    [0, 2, 2, 0],
+                    [0, 8, 0, 0]];
+    const outputMatrix = new Game().slideRight(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 4],
+                                  [0, 0, 8, 4],
+                                  [0, 0, 0, 4],
+                                  [0, 0, 0, 8]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideRight test 2', () => {
+    const matrix = [[2, 0, 0, 0],
+                    [4, 0, 0, 0],
+                    [8, 0, 0, 0],
+                    [2, 4, 2, 2]];
+    const outputMatrix = new Game().slideRight(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 2],
+                                  [0, 0, 0, 4],
+                                  [0, 0, 0, 8],
+                                  [0, 2, 4, 4]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideRight test 3', () => {
+    const matrix = [[0, 4, 0, 0],
+                    [0, 0, 2, 0],
+                    [8, 2, 0, 4],
+                    [4, 4, 2, 0]];
+    const outputMatrix = new Game().slideRight(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 4],
+                                  [0, 0, 0, 2],
+                                  [0, 8, 2, 4],
+                                  [0, 0, 8, 2]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
 
 });
