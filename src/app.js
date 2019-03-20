@@ -4,4 +4,7 @@
 //  Created by Kavin Varnan on 2019-03-20
 //
 
-console.log("Hello");
+const Game = require('./game');
+
+new Game().run();
+
