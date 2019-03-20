@@ -80,11 +80,23 @@ class Game {
     return availableSpots[randomSpot];
   }
 
+
+  // No unit testing done
+  // Insert a random number to matrix either a 2 or 4
+  insertRandomNumberToMatrixForSpot(spot) {
+    // 0 -> x
+    // 1 -> y
+    this.matrix[spot[0]][spot[1]] = (Math.random() >= 0.5) ? 2 : 4;
+  }
+
   run() {
     this.matrix = this.generateInitialMatrix();
     const availableSpots = this.findAvailableSpots(this.matrix);
-    const spot = this.getRandomSpot(availableSpots);
-    console.log(spot)
+    const spot1 = this.getRandomSpot(availableSpots);
+    const spot2 = this.getRandomSpot(availableSpots);
+    this.insertRandomNumberToMatrixForSpot(spot1);
+    this.insertRandomNumberToMatrixForSpot(spot2);
+    console.log(this.matrix);
   }
   
 }
