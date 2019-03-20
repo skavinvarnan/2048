@@ -32,8 +32,10 @@
 class Game {
 
   constructor() {
-    this.rowLength = 4;
-    this.colLength = 4;
+    // Please note unit tests will only pass if the grid size is 4
+    this.gridSize = 4;
+    this.rowLength = this.gridSize;
+    this.colLength = this.gridSize;
     this.matrix = [];
   }
 
@@ -61,7 +63,7 @@ class Game {
     let availableSpots = [];
     for (let i = 0; i < this.rowLength; i++) {
       for (let j = 0; j < this.colLength; j++) {
-        // Check if the spot has 0. Thats considered as empty
+        // Check if the spot has 0. That is considered as empty
         if (matrix[i][j] === 0) {
           // Save that coordinate in an array
           availableSpots.push([i, j]);
@@ -89,6 +91,7 @@ class Game {
     this.matrix[spot[0]][spot[1]] = (Math.random() >= 0.5) ? 2 : 4;
   }
 
+  // Push a single row to the left with the logic of combining numbers
   pushRowToLeft(row) {
     let nextNonZeroIndex;
     for (let i = 0; i < row.length; i++) {
