@@ -118,6 +118,27 @@ class Game {
     return row;
   }
 
+  // Slide the whole matrix left, just equivalent to swipe left in the game
+  slideLeft(matrix) {
+    // Loop through all the row length
+    for (let i = 0; i < this.rowLength; i++) {
+      let rowArrayItems = [];
+      // Loop through all the col length
+      for (let j = 0; j < this.colLength; j++) {
+        // Get a particular row
+        rowArrayItems.push(matrix[i][j]);
+      }
+      // Push the row to left
+      rowArrayItems = this.pushRowToLeft(rowArrayItems);
+
+      // Again update the pushed data through the matrix
+      for (let j = 0; j < this.colLength; j++) {
+        matrix[i][j] = rowArrayItems[j];
+      }
+    }
+    return matrix;
+  }
+
   run() {
     // this.matrix = this.generateInitialMatrix();
     // const availableSpots = this.findAvailableSpots(this.matrix);
@@ -126,8 +147,13 @@ class Game {
     // this.insertRandomNumberToMatrixForSpot(spot1);
     // this.insertRandomNumberToMatrixForSpot(spot2);
     // console.table(this.matrix);
-    const a = this.pushRowToLeft([0, 0, 4, 2]);
-    console.log(a);
+    // const a = this.pushRowToLeft([0, 0, 4, 2]);
+    const matrix = [[0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    this.slideLeft(matrix);
+    console.table(matrix);
   }
   
 }

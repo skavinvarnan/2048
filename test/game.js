@@ -253,5 +253,57 @@ describe('Game tests', function () {
     expect(spot).to.eql([2, 0, 0, 0]);
   });
 
+  it('slide zero', () => {
+    const matrix = [[0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    const outputMatrix = new Game().slideLeft(matrix);
+    const outputMatrixExpected = [[0, 0, 0, 0],
+                                  [0, 0, 0, 0],
+                                  [0, 0, 0, 0],
+                                  [0, 0, 0, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideLeft test 1', () => {
+    const matrix = [[0, 2, 0, 2],
+                    [2, 0, 8, 0],
+                    [0, 4, 4, 0],
+                    [0, 0, 4, 2]];
+    const outputMatrix = new Game().slideLeft(matrix);
+    const outputMatrixExpected = [[4, 0, 0, 0],
+                                  [2, 8, 0, 0],
+                                  [8, 0, 0, 0],
+                                  [4, 2, 0, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideLeft test 2', () => {
+    const matrix = [[0, 2, 8, 4],
+                    [0, 0, 4, 8],
+                    [0, 4, 0, 0],
+                    [0, 0, 0, 0]];
+    const outputMatrix = new Game().slideLeft(matrix);
+    const outputMatrixExpected = [[2, 8, 4, 0],
+                                  [4, 8, 0, 0],
+                                  [4, 0, 0, 0],
+                                  [0, 0, 0, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
+  it('slideLeft test 3', () => {
+    const matrix = [[0, 0, 2, 0],
+                    [0, 0, 0, 4],
+                    [0, 0, 0, 8],
+                    [2, 0, 4, 2]];
+    const outputMatrix = new Game().slideLeft(matrix);
+    const outputMatrixExpected = [[2, 0, 0, 0],
+                                  [4, 0, 0, 0],
+                                  [8, 0, 0, 0],
+                                  [2, 4, 2, 0]];
+    expect(outputMatrix).to.eql(outputMatrixExpected);
+  });
+
 
 });
