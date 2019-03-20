@@ -12,15 +12,15 @@ const { expect } = require('chai');
 describe('Game test', function () {
   it('generateInitialMatrix', () => {
     const initialMatrix = new Game().generateInitialMatrix();
-    expect(initialMatrix).to.eql([[-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1]]);
+    expect(initialMatrix).to.eql([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
   });
 
   it('findAvailableSpots pos [0, 0]', () => {
     const matrix = [
-      [5, -1, -1, -1],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1]
+      [5, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
     ];
     const availableSpots = new Game().findAvailableSpots(matrix);
     expect(availableSpots).to.eql([
@@ -44,10 +44,10 @@ describe('Game test', function () {
 
   it('findAvailableSpots pos [0, 2]', () => {
     const matrix = [
-      [-1, -1, 6, -1],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1]
+      [0, 0, 6, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
     ];
     const availableSpots = new Game().findAvailableSpots(matrix);
     expect(availableSpots).to.eql([
@@ -71,10 +71,10 @@ describe('Game test', function () {
 
   it('findAvailableSpots pos [1, 3]', () => {
     const matrix = [
-      [-1, -1, -1, -1],
-      [-1, -1, -1, 6],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1]
+      [0, 0, 0, 0],
+      [0, 0, 0, 6],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
     ];
     const availableSpots = new Game().findAvailableSpots(matrix);
     expect(availableSpots).to.eql([
@@ -98,10 +98,10 @@ describe('Game test', function () {
 
   it('findAvailableSpots pos [2, 1]', () => {
     const matrix = [
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1],
-      [-1, 5, -1, -1],
-      [-1, -1, -1, -1]
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 5, 0, 0],
+      [0, 0, 0, 0]
     ];
     const availableSpots = new Game().findAvailableSpots(matrix);
     expect(availableSpots).to.eql([
@@ -125,10 +125,10 @@ describe('Game test', function () {
 
   it('findAvailableSpots pos [3, 0]', () => {
     const matrix = [
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1],
-      [4, -1, -1, -1]
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [4, 0, 0, 0]
     ];
     const availableSpots = new Game().findAvailableSpots(matrix);
     expect(availableSpots).to.eql([
@@ -152,10 +152,10 @@ describe('Game test', function () {
 
   it('findAvailableSpots pos [1, 2]', () => {
     const matrix = [
-      [-1, -1, -1, -1],
-      [-1, -1, 6, -1],
-      [-1, -1, -1, -1],
-      [-1, -1, -1, -1]
+      [0, 0, 0, 0],
+      [0, 0, 6, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
     ];
     const availableSpots = new Game().findAvailableSpots(matrix);
     expect(availableSpots).to.eql([

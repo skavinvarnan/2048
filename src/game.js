@@ -38,10 +38,10 @@ class Game {
   }
 
   // [
-  //   [-1, -1, -1, -1],
-  //   [-1, -1, -1, -1],
-  //   [-1, -1, -1, -1],
-  //   [-1, -1, -1, -1]
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0]
   // ]
   // Generate the matrix something like this
   generateInitialMatrix() {
@@ -49,7 +49,7 @@ class Game {
     for (let i = 0; i < this.rowLength; i++) {
       let rowArray = [];
       for (let j = 0; j < this.colLength; j++) {
-        rowArray.push(-1);
+        rowArray.push(0);
       }
       colArray.push(rowArray);
     }
@@ -61,8 +61,8 @@ class Game {
     let availableSpots = [];
     for (let i = 0; i < this.rowLength; i++) {
       for (let j = 0; j < this.colLength; j++) {
-        // Check if the spot has -1. Thats considered as empty
-        if (matrix[i][j] === -1) {
+        // Check if the spot has 0. Thats considered as empty
+        if (matrix[i][j] === 0) {
           // Save that coordinate in an array
           availableSpots.push([i, j]);
         }
@@ -96,7 +96,7 @@ class Game {
     const spot2 = this.getRandomSpot(availableSpots);
     this.insertRandomNumberToMatrixForSpot(spot1);
     this.insertRandomNumberToMatrixForSpot(spot2);
-    console.log(this.matrix);
+    console.table(this.matrix);
   }
   
 }
