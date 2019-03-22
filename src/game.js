@@ -34,6 +34,7 @@ class Game {
   constructor() {
     // Please note unit tests will only pass if the grid size is 4
     this.gridSize = 4;
+    this.winningScore = 32;
     this.rowLength = this.gridSize;
     this.colLength = this.gridSize;
     this.matrix = [];
@@ -117,6 +118,17 @@ class Game {
       }
     }
     return row;
+  }
+
+  isTheGameWon(score, matrix) {
+    for (let i = 0; i < this.rowLength; i++) {
+      for (let j = 0; j < this.colLength; j++) {
+        if (matrix[i][j] >= score) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   // Slide the whole matrix left, just equivalent to swipe left in the game

@@ -422,5 +422,40 @@ describe('Game tests', function () {
     expect(outputMatrix).to.eql(outputMatrixExpected);
   });
 
+  it('isTheGameWon 1', () => {
+    const matrix = [[2, 8, 2, 2],
+                    [8, 32, 0, 4],
+                    [4, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    const isTheGameWon = new Game().isTheGameWon(32, matrix);
+    expect(isTheGameWon).to.be.true;
+  });
+
+  it('isTheGameWon 2', () => {
+    const matrix = [[2, 8, 2, 2],
+                    [8, 16, 0, 4],
+                    [4, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    const isTheGameWon = new Game().isTheGameWon(32, matrix);
+    expect(isTheGameWon).to.be.false;
+  });
+
+  it('isTheGameWon 3', () => {
+    const matrix = [[2, 8, 2, 2],
+                    [8, 64, 0, 4],
+                    [4, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    const isTheGameWon = new Game().isTheGameWon(32, matrix);
+    expect(isTheGameWon).to.be.true;
+  });
+
+  it('isTheGameWon 4', () => {
+    const matrix = [[2, 8, 2, 2],
+                    [8, 128, 0, 4],
+                    [4, 0, 0, 0],
+                    [0, 0, 0, 0]];
+    const isTheGameWon = new Game().isTheGameWon(128, matrix);
+    expect(isTheGameWon).to.be.true;
+  });
 
 });
