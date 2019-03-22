@@ -11,6 +11,10 @@ const { terminal } = require('terminal-kit');
 
 class App {
   constructor() {
+
+  }
+
+  init() {
     this.game = new Game();
     // Create the initial 0 matrix
     this.game.generateInitialMatrix();
@@ -22,8 +26,29 @@ class App {
     // Insert two number in random two spots
     this.game.insertRandomNumberToMatrixForSpot(spot1);
     this.game.insertRandomNumberToMatrixForSpot(spot2);
-    this.renderTable();
+    //this.renderTable();
+  }
+
+  startGameNormally() {
+    this.init();
     new Keypress(this.upClicked.bind(this), this.downClicked.bind(this), this.leftClicked.bind(this), this.rightClicked.bind(this))
+  }
+
+  startGameAsPlayingAgent() {
+    this.init();
+
+    setInterval(() => {
+      const randomNumber = Math.floor((Math.random() * 4));
+      if (randomNumber === 0) {
+        this.upClicked()
+      } else if (randomNumber === 1) {
+        this.downClicked()
+      } else if (randomNumber === 2) {
+        this.leftClicked()
+      } else if (randomNumber === 3) {
+        this.rightClicked()
+      }
+    }, 100);
   }
 
   // Up click action
@@ -84,7 +109,6 @@ class App {
   }
 
   renderTable(isGameWon) {
-    terminal.bgBrightBlue();
     terminal.fullscreen();
 
     if (isGameWon) {
@@ -106,10 +130,14 @@ class App {
     // Use spread operator to convert
     table.push(...this.game.matrix);
     console.log(table.toString());
+
+    if (isGameWon) {
+      process.exit();
+    }
   }
 }
 
-new App();
-
+// new App().startGameNormally();
+new App().startGameAsPlayingAgent();
 
 
