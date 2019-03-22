@@ -12,5 +12,8 @@
     "mocha": "^6.0.2"
   },
   "author": "Kavin Varnan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "keypress": "^0.2.1"
+  }
 }
