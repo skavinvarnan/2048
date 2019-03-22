@@ -30,28 +30,47 @@ class App {
   upClicked() {
     this.game.slideUp(this.game.matrix);
     this.insertNumberOnRandomSpot();
-    this.renderTable();
+    this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    const gameWon = this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    // Render table if the game is not won
+    if (!gameWon) { this.renderTable(); }
   }
 
   // Down click action
   downClicked() {
     this.game.slideDown(this.game.matrix);
     this.insertNumberOnRandomSpot();
-    this.renderTable();
+    this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    const gameWon = this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    // Render table if the game is not won
+    if (!gameWon) { this.renderTable(); }
   }
 
   // Left click action
   leftClicked() {
     this.game.slideLeft(this.game.matrix);
     this.insertNumberOnRandomSpot();
-    this.renderTable();
+    this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    const gameWon = this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    // Render table if the game is not won
+    if (!gameWon) { this.renderTable(); }
   }
 
   // Right click action
   rightClicked() {
     this.game.slideRight(this.game.matrix);
     this.insertNumberOnRandomSpot();
-    this.renderTable();
+    const gameWon = this.checkGameWon(this.game.isTheGameWon(this.game.winningScore, this.game.matrix));
+    // Render table if the game is not won
+    if (!gameWon) { this.renderTable(); }
+  }
+
+  checkGameWon(isGameWon) {
+    if (isGameWon) {
+      this.renderTable(true);
+      setTimeout(() => { process.stdin.pause(); }, 100);
+    }
+    return isGameWon;
   }
 
   // After a move insert either 2 or 4 on a random available spot
@@ -64,8 +83,15 @@ class App {
     }
   }
 
-  renderTable() {
+  renderTable(isGameWon) {
+    terminal.bgBrightBlue();
     terminal.fullscreen();
+
+    if (isGameWon) {
+      terminal.wrap.white('You won the game');
+      console.log("");
+    }
+
     // Recreate table everytime we render
     const table = new Table({
       colWidths: [6, 6, 6, 6],
