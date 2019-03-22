@@ -7,6 +7,7 @@
 const Game = require('./game');
 const Keypress = require('./keypress');
 const Table = require('cli-table3');
+const { terminal } = require('terminal-kit');
 
 class App {
   constructor() {
@@ -61,6 +62,7 @@ class App {
   }
 
   renderTable() {
+    terminal.fullscreen();
     // Recreate table everytime we render
     const table = new Table({
       colWidths: [6, 6, 6, 6],
