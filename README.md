@@ -6,7 +6,8 @@
 2) Install dependencies ```yarn install```
 3) Execute Unit test ```yarn test```
 4) Run the game ```yarn start```
-5) Stop the game by Control + C
+5) Use __up__ or __down__ or __left__ or __right__ arrow to move the tile
+6) Stop the game by Control + C
 
 PS: You can also use ```npm```
 
