@@ -24,22 +24,32 @@ class App {
 
   upClicked() {
     this.game.slideUp(this.game.matrix);
+    this.insertNumberOnRandomSpot();
     console.table(this.game.matrix);
   }
 
   downClicked() {
     this.game.slideDown(this.game.matrix);
+    this.insertNumberOnRandomSpot();
     console.table(this.game.matrix);
   }
 
   leftClicked() {
     this.game.slideLeft(this.game.matrix);
+    this.insertNumberOnRandomSpot();
     console.table(this.game.matrix);
   }
 
   rightClicked() {
     this.game.slideRight(this.game.matrix);
+    this.insertNumberOnRandomSpot();
     console.table(this.game.matrix);
+  }
+
+  insertNumberOnRandomSpot() {
+    const availableSpots = this.game.findAvailableSpots(this.game.matrix);
+    const randomStop = this.game.getRandomSpot(availableSpots);
+    this.game.insertRandomNumberToMatrixForSpot(randomStop);
   }
 }
 
