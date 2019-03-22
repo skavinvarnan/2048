@@ -58,7 +58,10 @@ class App {
   insertNumberOnRandomSpot() {
     const availableSpots = this.game.findAvailableSpots(this.game.matrix);
     const randomStop = this.game.getRandomSpot(availableSpots);
-    this.game.insertRandomNumberToMatrixForSpot(randomStop);
+    // Check if random spot is available. Only if available add to matrix
+    if (randomStop) {
+      this.game.insertRandomNumberToMatrixForSpot(randomStop);
+    }
   }
 
   renderTable() {
