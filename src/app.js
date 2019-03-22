@@ -26,7 +26,7 @@ class App {
     // Insert two number in random two spots
     this.game.insertRandomNumberToMatrixForSpot(spot1);
     this.game.insertRandomNumberToMatrixForSpot(spot2);
-    //this.renderTable();
+    this.renderTable();
   }
 
   startGameNormally() {
@@ -137,7 +137,7 @@ class App {
   }
 }
 
-// new App().startGameNormally();
-new App().startGameAsPlayingAgent();
+new App().startGameNormally();
+// new App().startGameAsPlayingAgent();
 
 
