@@ -55,6 +55,7 @@ class Game {
       }
       colArray.push(rowArray);
     }
+    this.matrix = colArray;
     return colArray;
   };
 
@@ -194,7 +195,7 @@ class Game {
   }
 
   run() {
-    // this.matrix = this.generateInitialMatrix();
+    this.matrix = this.generateInitialMatrix();
     // const availableSpots = this.findAvailableSpots(this.matrix);
     // const spot1 = this.getRandomSpot(availableSpots);
     // const spot2 = this.getRandomSpot(availableSpots);

@@ -4,38 +4,46 @@
 //  Created by Kavin Varnan on 2019-03-20
 //
 
-// const Game = require('./game');
-//
-// new Game().run();
+const Game = require('./game');
+const Keypress = require('./keypress');
 
-const keypress = require('keypress');
+class App {
+  constructor() {
+    this.game = new Game();
+    this.game.generateInitialMatrix();
 
-// make `process.stdin` begin emitting "keypress" events
-keypress(process.stdin);
+    const availableSpots = this.game.findAvailableSpots(this.game.matrix);
+    const spot1 = this.game.getRandomSpot(availableSpots);
+    const spot2 = this.game.getRandomSpot(availableSpots);
+    this.game.insertRandomNumberToMatrixForSpot(spot1);
+    this.game.insertRandomNumberToMatrixForSpot(spot2);
 
-// listen for the "keypress" event
-process.stdin.on('keypress', (ch, key) => {
-  if (key && key.ctrl && key.name === 'c') {
-    process.stdin.pause();
-    console.log("Exit game");
+    console.table(this.game.matrix);
+    new Keypress(this.upClicked.bind(this), this.downClicked.bind(this), this.leftClicked.bind(this), this.rightClicked.bind(this))
   }
 
-  if (key && key.name === 'right') {
-    console.log("Slide Right");
+  upClicked() {
+    this.game.slideUp(this.game.matrix);
+    console.table(this.game.matrix);
   }
 
-  if (key && key.name === 'left') {
-    console.log("Slide Left");
+  downClicked() {
+    this.game.slideDown(this.game.matrix);
+    console.table(this.game.matrix);
   }
 
-  if (key && key.name === 'up') {
-    console.log("Slide Up");
+  leftClicked() {
+    this.game.slideLeft(this.game.matrix);
+    console.table(this.game.matrix);
   }
 
-  if (key && key.name === 'down') {
-    console.log("Slide Down");
+  rightClicked() {
+    this.game.slideRight(this.game.matrix);
+    console.table(this.game.matrix);
   }
-});
+}
 
-process.stdin.setRawMode(true);
-process.stdin.resume();
+new App();
+
+
+
