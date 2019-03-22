@@ -34,7 +34,7 @@ class Game {
   constructor() {
     // Please note unit tests will only pass if the grid size is 4
     this.gridSize = 4;
-    this.winningScore = 128;
+    this.winningScore = 2048;
     this.rowLength = this.gridSize;
     this.colLength = this.gridSize;
     this.matrix = [];
